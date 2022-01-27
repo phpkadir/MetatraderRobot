@@ -1,3 +1,4 @@
+//  Metatrader 4 only works well and you should checkout periodically.
 // This version Pipmaker_V13_1 by Enforcer has been modified from the PipMakerV10.
 // All orders are now closed when ProfitTarget is reached to eliminate outlying orders from building up negative equity.
 // Multiplier/CounterTrendMultiplier now acts as Martingale - doubling lot size at Spacing pips away in opposite trend from initial order (CounterTrendMultiplier) or
@@ -22,7 +23,7 @@
 // - added ProfitSkew option - will modify default ProfitTarget when MoneyManagement=true
 // - added ATR as option for ARSI trigger
 // - added Fisher indicator by yast77
-//  Metatrader 4 only works well and you should checkout periodically.
+// - god bless me
 #include <stdlib.mqh>
 #include <stderror.mqh>
 #define  NL    "\n"
@@ -64,11 +65,11 @@ extern double  LotIncrement            = 0.1; //NULL if MoneyMangement is true
 extern double  Multiplier              = 0;  // Will increase orders in Martingale fashion in direction of trend if set to "1". Used with TrendSpacing only.
 extern double  CounterTrendMultiplier  = 0;  // Will increase orders in Martingale fashion in opposite direction of trend if set to "1". Used with Spacing only.
 
-extern double  ProfitTarget            = 1;  // All orders closed when this profit target amount (in dollars) is reached
+extern double  ProfitTarget            = 10;  // All orders closed when this profit target amount (in dollars) is reached
 extern double  ProfitSkew              = 2;  // Increase/decrease ProfitTarget when MoneyMangement=true
 extern int     ProfitMode              = 1;  // 1= mixed mode, 2= global mode, 3= split mode
 extern bool    ProfitTrailing          = true;  // Will try to allow profit grow beyond ProfitTarget
-extern double  MaxRetrace              = 5;  // Maximum percent of MaxProfit allowed to decrease before close all orders
+extern double  MaxRetrace              = 2;  // Maximum percent of MaxProfit allowed to decrease before close all orders
 
 extern int     ForcedStart             = 0;  // 1 = New cycle will start if signal is for long, 2 = New cycle will start if signal is for short, 0 = disabled
 extern double  SL                      = 999;  // Performs better with no initial stoploss.
@@ -107,7 +108,7 @@ extern bool    RecReverse             = false;  // reverse direction of recovery
 
 // Internal settings
 //int            Step           = 1;
-string EA_name                = "ProfithunterEA";
+string EA_name                = "PipMaker_v15_3";
 double         stoploss       = 0;
 int            Error          = 0;
 int            Order          = 0;
@@ -951,5 +952,3 @@ void ExitAllTradesNOW(color Color, string reason)
    }
  }
 //-----------------------------------------END-----------------------------------------------------
-
-
